@@ -1,0 +1,23 @@
+grammar org.grafandreas.datalang.Csl with org.eclipse.xtext.xbase.Xbase
+
+import "http://www.grafandreas.org/datalang/Cdl"
+generate csl "http://www.grafandreas.org/datalang/Csl"
+
+Instances:
+	'package' name=FQN
+	instances+=Instance+;
+
+Instance:
+	declaration=[Type|FQN] name=ID '{'
+	ids+=IDAssignment*
+	values+=ValueAssignment*
+	'}';
+
+IDAssignment:
+	'id' declaration=[IDField|FQN] '=' idSpec=ID;
+
+ValueAssignment:
+	declaration=[Attribute|FQN] '=' valSpec=XExpression;
+	
+FQN:
+	ID ('.' ID)*;

@@ -1,0 +1,78 @@
+grammar org.grafandreas.datalang.Cdl with  org.eclipse.xtext.xbase.Xbase
+
+generate cdl "http://www.grafandreas.org/datalang/Cdl"
+
+import "http://www.eclipse.org/emf/2002/Ecore" as ecore
+
+SpecificationModel:
+    package+=Package+
+;
+
+Package:
+    'package' name=FQN members+=Type*
+;
+
+Type :
+    RequirementType | Enum | SimpleType
+;
+
+RequirementType: 
+    'type' name=ID ('extends' general=JvmParameterizedTypeReference)? '{'
+    idfields+=IDField*
+    attributes+=Attribute*
+    '}'
+;
+
+IDField:
+	'id' name=ID 
+;
+
+Attribute: 
+     type=JvmTypeReference name=ID  ("[" lowerBound=INT ('..' declaredUpperBound=MULTIPLICITY)? "]")? ('=' defaultExpr=XExpression)?
+;
+
+Enum:
+    'enum' name=ID '{' literals+=EnumLiteral* '}'
+;
+
+EnumLiteral:
+    name=ID ('=' value=INT)?
+;
+
+SimpleType: 
+    'type' name=ID
+    ('[' (lowerRangeDecimal=SIGNEDNUMBER|lowerRangeInteger=SIGNEDINT) '..' (upperRangeDecimal=SIGNEDNUMBER|upperRangeInteger=SIGNEDINT) ']')? 
+    ('from' baseType=[SimpleType|FQN]
+    ("[" lowerBound=INT ('..' declaredUpperBound=MULTIPLICITY)? "]")?
+    )?
+;
+
+
+
+
+
+FQN:
+    ID ('.' ID)*
+;
+ 
+XNUMBER returns ecore::EBigDecimal:
+    INT '.' INT (('e'|'E')('+'|'-')INT)?
+;
+ 
+ 
+SIGNEDNUMBER returns ecore::EBigDecimal:
+    '-'? XNUMBER
+;
+    
+// This is a signed int. 
+// Note that we use datatype rules, do _NOT_ use terminals (not recommended for various reasons)
+SIGNEDINT returns ecore::EBigInteger:
+    '-'? INT    
+;
+
+MULTIPLICITY returns ecore::EInt:
+    INT | '*'   
+;
+
+ 
+ 

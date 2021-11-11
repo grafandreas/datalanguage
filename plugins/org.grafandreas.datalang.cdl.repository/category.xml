@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+	<feature id="org.grafandreas.datalang.cdl.feature" version="0.0.0">
+		<category name="main"/>
+	</feature>
+	<feature id="org.grafandreas.datalang.cdl.feature.source" version="0.0.0">
+		<category name="main.source"/>
+	</feature>
+	<category-def name="main" label="Cdl"/>
+	<category-def name="main.source" label="Cdl (Sources)"/>
+</site>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="csl" nsURI="http://www.grafandreas.org/datalang/Csl" nsPrefix="csl">
+  <eClassifiers xsi:type="ecore:EClass" name="Instances">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="instances" upperBound="-1"
+        eType="#//Instance" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Instance">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="ecore:EClass platform:/resource/org.grafandreas.datalang.cdl/model/generated/Cdl.ecore#//Type"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="ids" upperBound="-1" eType="#//IDAssignment"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="values" upperBound="-1"
+        eType="#//ValueAssignment" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="IDAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="ecore:EClass platform:/resource/org.grafandreas.datalang.cdl/model/generated/Cdl.ecore#//IDField"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="idSpec" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ValueAssignment">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="declaration" eType="ecore:EClass platform:/resource/org.grafandreas.datalang.cdl/model/generated/Cdl.ecore#//Attribute"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="valSpec" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

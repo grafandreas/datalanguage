@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="check" nsURI="http://www.grafandreas.org/datalang/Check" nsPrefix="check">
+  <eClassifiers xsi:type="ecore:EClass" name="ChecksModel">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="blocks" upperBound="-1"
+        eType="#//CheckBlock" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CheckBlock">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="req" eType="ecore:EClass platform:/resource/org.eclipse.xtext.common.types/model/JavaVMTypes.ecore#//JvmParameterizedTypeReference"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="checks" upperBound="-1"
+        eType="#//ReqCheck" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ReqCheck">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="expr" eType="ecore:EClass platform:/resource/org.eclipse.xtext.xbase/model/Xbase.ecore#//XExpression"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="errorTemplate" eType="#//ErrorTemplate"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachToFields" eType="#//Names"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Names">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attrs" unique="false" upperBound="-1"
+        eType="ecore:EClass platform:/resource/org.grafandreas.datalang.cdl/model/generated/Cdl.ecore#//Attribute"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ErrorTemplate">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="message" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+</ecore:EPackage>
